@@ -3,6 +3,8 @@ class App {
     protected $controller = 'Home';
     protected $method = 'index';
     protected $params = [];
+    
+    // construct 
     public function __construct() {
         $url = $this->parseURL();
         // Periksa apakah $url tidak kosong dan memiliki elemen pertama
@@ -28,6 +30,7 @@ class App {
         call_user_func_array([$this->controller, $this->method], $this->params);
     }
     public function parseURL() {
+        // mengambil url dalam bentuk array
         if(isset($_GET['url'])) {
             $url = rtrim($_GET['url'], '/');
             $url = filter_var($url, FILTER_SANITIZE_URL);
